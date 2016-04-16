@@ -1,0 +1,11 @@
+# http://elinux.org/RPi_Resize_Flash_Partitions#Manually_resizing_the_SD_card_on_Raspberry_Pi
+
+sudo bash
+fdisk /dev/mmcblk0
+#    p to see the current start of the main partition
+#    d, 2 to delete the main partition
+#    n p 2 to create a new primary partition, next you need to enter the start of the old main partition and then the size (enter for complete SD card). The main partition on the Debian image from 2012-04-19 starts at 157696, but the start of your partition might be different. Check the p output!
+#    w write the new partition table
+
+shutdown -r now
+resize2fs /dev/mmcblk0p2
